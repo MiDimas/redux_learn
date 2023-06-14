@@ -1,23 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
 import {useDispatch, useSelector} from "react-redux";
 
 function App() {
     const dispatch = useDispatch();
-    const cash = useSelector( state => state.cash);
+    const cash = useSelector( state => state.cash.cash);
 
     const addCash = () => {
-        dispatch({type: "ADD_CASH", payload: 5})
+        try{
+            const value = Number(prompt('Сколько внести?'));
+            if(value){
+                dispatch({type: "ADD_CASH", payload: value})
+            }
+        }
+        catch (e){
+            console.log(e.message)
+        }
     };
     const getCash = () => {
-        dispatch({type: "GET_CASH", payload: 5})
+        try{
+            const value = Number(prompt('Сколько снять?'));
+            if(value){
+                dispatch({type: "GET_CASH", payload: value});
+            }
+        }
+        catch (e){
+            console.log(e.message)
+        }
     };
 
     return (
       <div className="App">
-          <div>{cash}</div>
-          <button onClick={addCash}>Пополнить</button>
-          <button onClick={getCash}>Снять</button>
+          <div style={{display: 'flex', justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
+              <div className='info'>{cash}</div>
+              <button className="btn"
+                      onClick={addCash}>Пополнить</button>
+              <button className="btn"
+                  onClick={getCash}>Снять</button>
+          </div>
       </div>
     );
 }

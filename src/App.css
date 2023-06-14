@@ -6,7 +6,20 @@
   height: 40vmin;
   pointer-events: none;
 }
-
+.btn {
+  width: 300px;
+  font-size: 20px;
+  background-color: #70b6ff;
+  border: 0;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+.info{
+  font-size: 32px;
+  font-weight: 700;
+  color: blueviolet;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
