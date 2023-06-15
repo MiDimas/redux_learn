@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 function App() {
     const dispatch = useDispatch();
     const cash = useSelector( state => state.cash.cash);
+    const customers = useSelector( state => state.customer.customers)
 
     const addCash = () => {
         try{
@@ -27,6 +28,31 @@ function App() {
             console.log(e.message)
         }
     };
+    const addCustomer = () => {
+        try{
+            const value = prompt('Введите Имя?');
+            const customer = {
+                name: value,
+                id: Date.now()
+            }
+            if(value){
+                dispatch({type: "ADD_CUSTOMER", payload: customer})
+            }
+        }
+        catch (e){
+            console.log(e.message)
+        }
+    };
+    const removeCustomer = (customer) => {
+        try{
+            if(customer){
+                dispatch({type: "REMOVE_CUSTOMER", payload: customer.id})
+            }
+        }
+        catch (e){
+            console.log(e.message)
+        }
+    };
 
     return (
       <div className="App">
@@ -36,6 +62,14 @@ function App() {
                       onClick={addCash}>Пополнить</button>
               <button className="btn"
                   onClick={getCash}>Снять</button>
+              <button className="btn"
+                      onClick={addCustomer}>Добавить клиента</button>
+              <div>
+                  {customers.length
+                      ? customers.map(value => (<div key={value.id} onClick={() => removeCustomer(value)}>{value.name}</div>))
+                      : <div>Клиентов нет</div>
+                  }
+              </div>
           </div>
       </div>
     );
