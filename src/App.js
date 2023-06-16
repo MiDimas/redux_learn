@@ -2,6 +2,7 @@ import './App.css';
 import {useDispatch, useSelector} from "react-redux";
 import {addCashAction, getCashAction} from "./store/reducers/cashReducer";
 import {addCustomerAction, removeCustomerAction} from "./store/reducers/customerReducer";
+import {fetchCustomers} from "./asyncActions/customers";
 
 function App() {
     const dispatch = useDispatch();
@@ -55,7 +56,7 @@ function App() {
             console.log(e.message)
         }
     };
-
+    console.log(dispatch)
     return (
       <div className="App">
           <div style={{display: 'flex', justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
@@ -66,6 +67,8 @@ function App() {
                   onClick={getCash}>Снять</button>
               <button className="btn"
                       onClick={addCustomer}>Добавить клиента</button>
+              <button className="btn"
+                      onClick={() => dispatch(fetchCustomers())}>Добавить клиентов</button>
               <div>
                   {customers.length
                       ? customers.map(value => (<div key={value.id} onClick={() => removeCustomer(value)}>{value.name}</div>))
