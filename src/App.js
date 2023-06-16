@@ -1,5 +1,7 @@
 import './App.css';
 import {useDispatch, useSelector} from "react-redux";
+import {addCashAction, getCashAction} from "./store/reducers/cashReducer";
+import {addCustomerAction, removeCustomerAction} from "./store/reducers/customerReducer";
 
 function App() {
     const dispatch = useDispatch();
@@ -10,7 +12,7 @@ function App() {
         try{
             const value = Number(prompt('Сколько внести?'));
             if(value){
-                dispatch({type: "ADD_CASH", payload: value})
+                dispatch(addCashAction(value))
             }
         }
         catch (e){
@@ -21,7 +23,7 @@ function App() {
         try{
             const value = Number(prompt('Сколько снять?'));
             if(value){
-                dispatch({type: "GET_CASH", payload: value});
+                dispatch(getCashAction(value));
             }
         }
         catch (e){
@@ -36,7 +38,7 @@ function App() {
                 id: Date.now()
             }
             if(value){
-                dispatch({type: "ADD_CUSTOMER", payload: customer})
+                dispatch(addCustomerAction(customer))
             }
         }
         catch (e){
@@ -46,7 +48,7 @@ function App() {
     const removeCustomer = (customer) => {
         try{
             if(customer){
-                dispatch({type: "REMOVE_CUSTOMER", payload: customer.id})
+                dispatch(removeCustomerAction(customer.id))
             }
         }
         catch (e){
