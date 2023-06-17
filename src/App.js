@@ -1,7 +1,7 @@
 import './App.css';
 import {useDispatch, useSelector} from "react-redux";
 import {addCashAction, asyncAddCashAction, asyncGetCashAction, getCashAction} from "./store/reducers/cashReducer";
-import {addCustomerAction, removeCustomerAction} from "./store/reducers/customerReducer";
+import {addCustomerAction, asyncAddManyCustomersAction, removeCustomerAction} from "./store/reducers/customerReducer";
 import {fetchCustomers} from "./asyncActions/customers";
 
 function App() {
@@ -73,6 +73,8 @@ function App() {
                       onClick={addCustomer}>Добавить клиента</button>
               <button className="btn"
                       onClick={() => dispatch(fetchCustomers())}>Добавить клиентов</button>
+              <button className="btn"
+                      onClick={() => dispatch(asyncAddManyCustomersAction())}>Добавить клиентов через сагу</button>
               <div>
                   {customers.length
                       ? customers.map(value => (<div key={value.id} onClick={() => removeCustomer(value)}>{value.name}</div>))

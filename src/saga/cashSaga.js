@@ -10,10 +10,10 @@ function* incrementCashWorker() {
 
 function* decrementCashWorker() {
     yield delay(2000);
-    yield put(getCashAction(1))
+    yield put(getCashAction(1));
 }
 
 export function* cashWatcher() {
-    yield takeEvery(ASYNC_ADD_CASH, incrementCashWorker)
-    yield takeEvery(ASYNC_GET_CASH, decrementCashWorker)
+    yield takeEvery(ASYNC_ADD_CASH, incrementCashWorker);
+    yield takeEvery(ASYNC_GET_CASH, decrementCashWorker);
 }

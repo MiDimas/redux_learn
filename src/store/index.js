@@ -4,7 +4,8 @@ import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga"
-import {cashWatcher} from "../saga/cashSaga";
+import {rootWatcher} from "../saga";
+
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -15,4 +16,4 @@ const rootReducer = combineReducers({
 
 export const store = legacy_createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk, sagaMiddleware)))
 
-sagaMiddleware.run(cashWatcher)
+sagaMiddleware.run(rootWatcher)
