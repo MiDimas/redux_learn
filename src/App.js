@@ -1,6 +1,6 @@
 import './App.css';
 import {useDispatch, useSelector} from "react-redux";
-import {addCashAction, getCashAction} from "./store/reducers/cashReducer";
+import {addCashAction, asyncAddCashAction, asyncGetCashAction, getCashAction} from "./store/reducers/cashReducer";
 import {addCustomerAction, removeCustomerAction} from "./store/reducers/customerReducer";
 import {fetchCustomers} from "./asyncActions/customers";
 
@@ -64,7 +64,11 @@ function App() {
               <button className="btn"
                       onClick={addCash}>Пополнить</button>
               <button className="btn"
+                      onClick={() => dispatch(asyncAddCashAction())}>Пополнить с задержкой</button>
+              <button className="btn"
                   onClick={getCash}>Снять</button>
+              <button className="btn"
+                  onClick={() =>dispatch(asyncGetCashAction())}>Снять с задержкой</button>
               <button className="btn"
                       onClick={addCustomer}>Добавить клиента</button>
               <button className="btn"
